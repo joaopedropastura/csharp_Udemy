@@ -14,10 +14,15 @@ namespace Product
 			p.Preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 			Console.Write("Quantidade no estoque: ");
 			p.Quantidade = int.Parse(Console.ReadLine());
-
 			Console.WriteLine(p);
-
-
+			Console.WriteLine("Digite a quantidade de produtos a serem adicionados ao estoque: ");
+			int qt = int.Parse(Console.ReadLine());
+			p.AdicionarProdutos(qt);
+			Console.WriteLine(p);
+			Console.WriteLine("Digite a quantidade de produtos a serem removidos do estoque: ");
+			qt = int.Parse(Console.ReadLine());
+			p.RemoverProdutos(qt);
+			Console.WriteLine(p);
 
 
 		}

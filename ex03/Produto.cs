@@ -13,7 +13,7 @@ namespace Product
 		}
 		public void AdicionarProdutos(int qtd) => this.Quantidade = Quantidade + qtd;
 
-		public void RemoverProdutos(int qtd) => this.Quantidade = Quantidade + qtd;
+		public void RemoverProdutos(int qtd) => this.Quantidade = Quantidade - qtd;
 		public override string ToString()
 		{
 			return $"Nome: {Nome}, $ {Preco.ToString("F2", CultureInfo.InvariantCulture)}, {Quantidade} unidades, Total: $ {ValorTotalEmEstoque().ToString("F2", CultureInfo.InvariantCulture)}";
