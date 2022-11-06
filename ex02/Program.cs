@@ -9,14 +9,14 @@ namespace Salario
 		{
 			List<Funcionario> f1 = new List<Funcionario>();
 			int i = 0;
-			int a;
-			do
-			{
+			// int a;
+			// do
+			// {
 				System.Console.Write($"Digite o nome do {i++} funcionario: ");
-				a = Console.Write();
+				// a = Console.Write("oi");
 				i++;
-			}
-			while(a != 0);
+			// }
+			// while(a != 0);
 
 
 		}
