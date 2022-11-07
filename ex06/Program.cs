@@ -12,15 +12,19 @@
 			quantAlunos = int.Parse(Console.ReadLine());
 			for(int x = 0; x < quantAlunos; x++)
 			{
+				Alunos novoAluno = new Alunos();
+				
 				Print("Digite o nome do aluno: ");
-				listAlunos[x].Name = Console.ReadLine();
-				for (int j = 0; j < 2; j++)
+				novoAluno.Name = Console.ReadLine();
+				// novoAluno.Name = nome;
+				for (int j = 0; j < 3; j++)
 				{
 					Print($"Digite o nota{j+1} do aluno: ");
-					listAlunos[x].LancaNota(Int64.Parse(Console.ReadLine()));
+					novoAluno.LancaNota(Int64.Parse(Console.ReadLine()));
 				}
+				listAlunos.Add(novoAluno);
 			}
-			// Print($"NOta final :{lAluno[0].NotaFinal}");
+			Print($"Nota final: {listAlunos[0].NotaFinal}\nResultado: {listAlunos[0].Resultado()}");
 		}
 		public delegate void MeuDelegate(object s);
 	}
