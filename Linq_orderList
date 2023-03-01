@@ -1,0 +1,13 @@
+//Dada uma lista de inteiros, filtre apenas os números pares e ordene em ordem crescente.
+
+
+List<int> numeros = new List<int> { 5, 7, 2, 8, 1, 4, 6, 3 };
+
+
+var ordenededList = numeros.Where(n => n % 2 == 0).OrderBy(i => i);
+
+
+foreach (var item in ordenededList)
+{
+    Console.Write(item);
+}
