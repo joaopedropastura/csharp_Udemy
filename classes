@@ -1,0 +1,110 @@
+using System;
+
+using System.Linq;
+
+
+//string[] lista1 = new string[] { "carro", "pincel", "borracha", "caminhao", "diogo", "paulo" };
+
+//string[] lista2 = new string[] { "camelo", "pintor", "borda", "cavalo", "diamante", "porta" };
+
+//string[] result = retorna1(lista1, lista2);
+
+//foreach (var item in result)
+//{
+//    Console.WriteLine(item);
+//}
+
+//string[] popItem(string[] str, string item)
+//{
+//    string[] popItems = new string[str.Length - 1];
+//    for (int j = 0, i = 0; i < str.Length; i++)
+//    {
+//        if (str[i] == item)
+//        {
+//            i++;
+//        }
+//        popItems[j++] = str[i];
+//    }
+//    return popItems;
+//}
+
+//string[] retorna1(string[] str1, string[] str2)
+//{
+//    string[] result = new string[(str1.Length + str2.Length)];
+
+//    for (int i = 0; i < result.Length; i++)
+//    {
+//        if (i < str1.Length)
+//            result[i] = str1[i];
+//        else
+//            result[i] = str2[i - str2.Length];
+//    }
+//    return result;
+//}
+
+
+//int fibonacci(int n)
+//{
+//    int r1 = 0;
+//    int aux;
+//    int r2 = 1;
+//    for (int i = 1; i < n; i++)
+//    {
+//        aux = r1;
+//        r1 = r2;
+//        r2 = aux + r1;
+//    }
+
+//    return r2;
+//}
+
+//int x = fibonacci(9);
+
+//Console.WriteLine(x);
+
+
+Carro c = new Carro("Fiat", "UNO", "1998", 1f);
+
+c.Acelerar(5f);
+
+Console.WriteLine(c.VelocidadeAtual);
+
+public class Alunos
+{
+    public string Nome { get; set; }
+    public string Cpf { get; set; }
+    public DateOnly DataNasc { get; set; }
+    public int Faltas { get; set; } = 0;
+    private float[] Notas { get; set; } = new float[3];
+    public void Faltou(int n = 1) => this.Faltas+= n;
+    public void SetNota(Nota nota, float num) => Notas[(int)(nota)] = num;
+    public bool FoiAprovado() => this.Faltas < 10 && (Notas.Take(2).Average() > 6 || Notas[2] > 6);
+    public enum Nota
+    {
+        Nota1 = 0,
+        Nota2 = 1,
+        Recuperacao = 2,
+    }
+
+}
+
+
+public class Carro
+{
+    public Carro(string marca, string modelo, string ano, float velocidadeAtual)
+    {
+        Marca = marca;
+        Modelo = modelo;
+        Ano = ano;
+        VelocidadeAtual = velocidadeAtual;
+    }
+
+    public string Marca { get; set; }
+    public string Modelo { get; set; }
+    public string Ano { get; set; }
+    public float VelocidadeAtual { get; set; }
+    public void Acelerar(float qt = 1) => this.VelocidadeAtual += qt > 0 ? qt : 0;
+    public void Frear(float qt = 1) => this.VelocidadeAtual += qt < 0 ? qt : 0;
+}
+
+public class 
