@@ -1,0 +1,26 @@
+BankAccount bk = new BankAccount("032138", "João Pedro Soares Rodrigues", 203940.19);
+
+
+Console.WriteLine(bk);
+public class BankAccount
+{
+    public BankAccount(string numConta, string name, double amount = 0)
+    {
+        this.numConta = numConta;
+        Name = name;
+        this.amount = amount;
+    }
+    protected string numConta { get; set; }
+    public string Name { get; set; }
+    protected double amount { get; set; }
+
+    public string ChengeName(string name) => this.Name = name;
+    public double Deposit(double value) => this.amount += value;
+    public double Withdraw(double value) => this.amount -= value;
+
+
+    public override string ToString()
+    {
+        return $"Nome: {this.Name:<10}\nConta: {this.numConta}\nSaldo: R${this.amount}";
+    }
+}
