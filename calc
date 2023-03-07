@@ -1,0 +1,46 @@
+using System.Linq;
+
+Console.WriteLine(Calculadora.ReqParallelsEquivalent(20, 30, 40, 20));
+
+public static class Calculadora
+{
+    public static double Sum(params double[] numbers)
+    {
+        double sum = 0;
+        foreach (var item in numbers)
+            sum += item;
+        return sum;
+    }
+    public static double Sub(params double[] numbers)
+    {
+        double sum = numbers[0];
+        for (int i = 1; i < numbers.Length; i++)
+            sum -= numbers[i];
+        return sum;
+    }
+    public static double Multi(params double[] numbers)
+    {
+        double sum = numbers[0];
+        for (int i = 1; i < numbers.Length; i++)
+            sum *= numbers[i];
+        return sum;
+    }
+    public static double Division(params double[] numbers)
+    {
+        double sum = numbers[0];
+        for (int i = 1; i < numbers.Length; i++)
+            sum /= numbers[i];
+        return sum;
+    }
+
+    public static double ReqParallelsEquivalent(params double[] numbers)
+    {
+        double sum = 0, temp;
+        foreach (var item in numbers)
+        {
+            temp = 1 / item;
+            sum += temp;
+        }
+        return 1/sum;
+    }
+}
