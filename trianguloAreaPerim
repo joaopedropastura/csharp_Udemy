@@ -1,0 +1,27 @@
+
+Retangulo rt = new Retangulo(2, 3);
+
+Retangulo rt2 = new Retangulo(2, 3, 6);
+
+
+Console.WriteLine(rt2.CalPerimetro());
+public class Retangulo
+{
+    public Retangulo(double ladoA, double ladoB)
+    {
+        this.ladoA = ladoA;
+        this.ladoB = ladoB;
+    }
+
+    public Retangulo(double ladoA, double ladoB, double ladoC) : this(ladoA, ladoB)
+    {
+        this.ladoC = ladoC;
+    }
+
+    protected double ladoA { get; set; }
+    protected double ladoB { get; set; }
+    protected double ladoC { get; set; }
+
+    public double CalcArea() => (this.ladoA * this.ladoB)/2;
+    public double CalPerimetro() => this.ladoB + this.ladoC + this.ladoA;
+}
