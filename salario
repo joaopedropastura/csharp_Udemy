@@ -1,0 +1,36 @@
+
+Funcionario fc = new Funcionario("João Pedro Soares Rodrigues Pastura", "171.924.057-00", 20345.99);
+
+fc.AumentarSalario(-1000);
+fc.GetFaltas(10);
+
+Console.WriteLine(fc);
+
+public class Funcionario
+{
+    public Funcionario(string name, string cpf, double salary)
+    {
+        this.name = name;
+        this.cpf = cpf;
+        this.salary = salary;
+    }
+
+    protected string name { get; set; }
+    protected string cpf { get; set; }  
+    
+    protected double salary { get; set; }
+
+    protected int absences { get; set; } = 0;
+
+    public double GetBonificacao(double value) => this.salary + value;
+
+    public void AumentarSalario(double value) => this.salary += value;
+
+    public void GetFaltas(int num = 1) => this.absences += num;
+
+    public override string ToString()
+    {
+        return $"Nome: {this.name}\nCPF: {this.cpf}\nSalário: R${this.salary}\nFaltas: {this.absences}";
+    }
+
+}
