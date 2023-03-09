@@ -1,0 +1,41 @@
+
+Caminhao ford = new Caminhao(800, "Ford", "F1000", 3);
+Console.WriteLine(ford);
+public abstract class Veiculo
+{
+    protected Veiculo(string marca, string modelo, int numeroPassageiros)
+    {
+        Marca = marca;
+        Modelo = modelo;
+        NumeroPassageiros = numeroPassageiros;
+    }
+
+    public string Marca { get; set; }
+    public string Modelo { get; set; }
+    public int NumeroPassageiros { get; set; } 
+
+    
+}
+
+public class Moto : Veiculo
+{
+    public Moto(float cilindradas, string marca, string modelo, int numeroPassageiros) : base(marca, modelo, numeroPassageiros) => Cilindradas = cilindradas;
+    
+    public float Cilindradas { get; set; }
+}
+
+public class Caminhao : Veiculo
+{
+
+    public Caminhao(float capacidade, string marca, string modelo, int numeroPassageiros) : base (marca, modelo, numeroPassageiros)
+    {
+        Capacidade = capacidade;
+    }
+    public float Capacidade { get; set; }
+
+    public override string ToString()
+    {
+        return $"Capacidade: {Capacidade}\nMarca: {Marca}\nModelo: {Modelo}\nNumero de Passageiros: {NumeroPassageiros}";
+    }
+
+}  
