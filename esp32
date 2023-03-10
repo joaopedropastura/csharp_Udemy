@@ -1,0 +1,77 @@
+#include <common.h>
+#include <FirebaseESP32.h>
+#include <FirebaseFS.h>
+#include <Utils.h>
+
+#include <DHT.h>
+#include <LiquidCrystal.h>
+#include <WiFi.h>
+
+#define FIREBASE_HOST "https://esp32-temp-umid-default-rtdb.firebaseio.com/" // URL acima do console de dados
+#define FIREBASE_AUTH "Q8GzfBrCnuwcmt9q9FBrvfVO3dym8mFwmk9Qt6Fi" // Configurações do projeto > Contas de serviço > Chaves secretas do banco de dados > Copiar chave secreta
+DHT dht (33, DHT11);
+LiquidCrystal lcd (13, 12, 14, 27, 26, 25);
+const char *ssid = "Vivo-Internet-BF17";
+const char *password = "78814222";
+float temp;
+float umid;
+FirebaseData firebaseData;
+FirebaseJson json;
+byte customChar[] = {
+  B00111,
+  B00101,
+  B00111,
+  B00000,
+  B00000,
+  B00000,
+  B00000,
+  B00000
+};
+
+void setup() {
+  dht.begin();
+  Serial.begin(9600);
+  lcd.begin(16, 2);
+  lcd.createChar(1, customChar);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.print(".");
+    delay(300);
+  }
+  Serial.print("Connected with IP: ");
+  Serial.println(WiFi.localIP());
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+  Firebase.reconnectWiFi(true);
+  Firebase.setReadTimeout(firebaseData, 1000 * 60);
+  Firebase.setwriteSizeLimit(firebaseData, "tiny");
+
+}
+
+void loop() {
+  temp = dht.readTemperature();
+  umid = dht.readHumidity();
+  
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Umidade: ");
+  lcd.setCursor(0, 1);
+  lcd.print(umid);
+  lcd.print("%");
+  
+  delay(3000);
+  json.set("/temperatura", temp);
+  json.set("/umidade", umid);
+  Firebase.updateNode(firebaseData, "/JoaoPedro/Sensor", json);
+
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Temperatura: ");
+  lcd.setCursor(0, 1);
+  lcd.print(temp);
+  lcd.write(1);
+  lcd.print("C");
+  
+  delay(3000);
+
+}
